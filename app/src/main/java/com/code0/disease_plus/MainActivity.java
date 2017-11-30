@@ -43,6 +43,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import br.tiagohm.markdownview.MarkdownView;
+
 public class MainActivity extends AppCompatActivity {
 
     Bitmap bitmap;
@@ -156,50 +158,57 @@ public class MainActivity extends AppCompatActivity {
                             String disease = jsonObject.getString("disease");
                             jsonObject = jsonArray1.getJSONObject(1);
                             String percantage = jsonObject.getString("percantage");
-                            Toast.makeText(MainActivity.this, percantage, Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(MainActivity.this, percantage, Toast.LENGTH_SHORT).show();
 
 
                             String tmpHtml = "<html> <b>a<b/> whole bunch of html stuff</html>";
                             String htmlTextStr = Html.fromHtml(tmpHtml).toString();
 
-                            TextView textView3=(TextView) findViewById(R.id.textView3);
-                            textView3.setText(disease.toUpperCase());
-                            TextView textView4 =(TextView)findViewById(R.id.textView4);
-                           if(disease=="blightvirus")
+
+                            MarkdownView mMarkdownView;
+
+
+                            if(disease=="blightvirus")
                            {
-                               textView4.setText("Common on tomato and potato plants, early blight is caused by the fungus Alternaria solani and occurs throughout the United States. Symptoms first appear on the lower, older leaves as small brown spots with concentric rings that form a “bull’s eye” pattern. As the disease matures, it spreads outward on the leaf surface causing it to turn yellow, wither and die. Eventually the stem, fruit and upper portion of the plant will become infected. Crops can be severely damaged.\n" +
+                               mMarkdownView = (MarkdownView)findViewById(R.id.markdown_view);
+                               mMarkdownView.loadMarkdown(" # Early Blight\n" +
+                                       "Common on tomato and potato plants, early blight is caused by the fungus Alternaria solani and occurs throughout the United States. Symptoms first appear on the lower, older leaves as small brown spots with concentric rings that form a “bull’s eye” pattern. As the disease matures, it spreads outward on the leaf surface causing it to turn yellow, wither and die. Eventually the stem, fruit and upper portion of the plant will become infected. Crops can be severely damaged.\n" +
                                        "\n" +
-                                       "Early blight overwinters on infected plant tissue and is spread by splashing rain, irrigation, insects and garden tools. The disease is also carried on tomato seeds and in potato tubers. In spite of its name, early blight can occur any time throughout the growing season. High temperatures (80-85˚F.) and wet, humid conditions promote its rapid spread. In many cases, poorly nourished or stressed plants are attacked." +
-                                       "" +
-                                       "\nTreatment\n" +
+                                       "Early blight overwinters on infected plant tissue and is spread by splashing rain, irrigation, insects and garden tools. The disease is also carried on tomato seeds and in potato tubers. In spite of its name, early blight can occur any time throughout the growing season. High temperatures (80-85˚F.) and wet, humid conditions promote its rapid spread. In many cases, poorly nourished or stressed plants are attacked.\n" +
                                        "\n" +
-                                       "Prune or stake plants to improve air circulation and reduce fungal problems.\n" +
-                                       "Make sure to disinfect your pruning shears (one part bleach to 4 parts water) after each cut.\n" +
-                                       "Keep the soil under plants clean and free of garden debris. Add a layer of organic compost to prevent the spores from splashing back up onto vegetation.\n" +
-                                       "Drip irrigation and soaker hoses can be used to help keep the foliage dry.\n" +
-                                       "For best control, apply copper-based fungicides early, two weeks before disease normally appears or when weather forecasts predict a long period of wet weather. Alternatively, begin treatment when disease first appears, and repeat every 7-10 days for as long as needed.\n" +
-                                       "Containing copper and pyrethrins, Bonide® Garden Dust is a safe, one-step control for many insect attacks and fungal problems. For best results, cover both the tops and undersides of leaves with a thin uniform film or dust. Depending on foliage density, 10 oz will cover 625 sq ft. Repeat applications every 7-10 days, as needed.\n" +
-                                       "SERENADE Garden is a broad spectrum, preventative bio-fungicide recommended for the control or suppression of many important plant diseases. For best results, treat prior to foliar disease development or at the first sign of infection. Repeat at 7-day intervals or as needed.\n" +
-                                       "Remove and destroy all garden debris after harvest and practice crop rotation the following year.\n" +
-                                       "Burn or bag infected plant parts. Do NOT compost.");
+                                       "# Treatment\n" +
+                                       "\n" +
+                                       "1. Prune or stake plants to improve air circulation and reduce fungal problems.\n" +
+                                       "2. Make sure to disinfect your pruning shears (one part bleach to 4 parts water) after each cut.\n" +
+                                       "3. Keep the soil under plants clean and free of garden debris. Add a layer of organic compost to prevent the spores from splashing back up onto vegetation.\n" +
+                                       "4. Drip irrigation and soaker hoses can be used to help keep the foliage dry.\n" +
+                                       "5. For best control, apply copper-based fungicides early, two weeks before disease normally appears or when weather forecasts predict a long period of wet weather. Alternatively, begin treatment when disease first appears, and repeat every 7-10 days for as long as needed.\n" +
+                                       "6. Containing copper and pyrethrins, Bonide® Garden Dust is a safe, one-step control for many insect attacks and fungal problems. For best results, cover both the tops and undersides of leaves with a thin uniform film or dust. Depending on foliage density, 10 oz will cover 625 sq ft. Repeat applications every 7-10 days, as needed.\n" +
+                                       "7. SERENADE Garden is a broad spectrum, preventative bio-fungicide recommended for the control or suppression of many important plant diseases. For best results, treat prior to foliar disease development or at the first sign of infection. Repeat at 7-day intervals or as needed.\n" +
+                                       "8. Remove and destroy all garden debris after harvest and practice crop rotation the following year.\n" +
+                                       "9. Burn or bag infected plant parts. Do NOT compost.\n" +
+                                       "\n" +
+                                       "\n");
                            }
                            else
                            {
-                               textView4.setText("Damage/Symptoms\n" +
-                                       "\n" +
+                               mMarkdownView = (MarkdownView)findViewById(R.id.markdown_view);
+                               mMarkdownView.loadMarkdown("# Maize streak virus\n" +
+                                       "# Damage/Symptoms\n" +
                                        "The virus causes a white to yellowish streaking on the leaves.\n" +
                                        "The streaks are very narrow, more or less broken and run parallel along the leaves.\n" +
                                        "Eventually the leaves turn yellow with long lines of green patches\n" +
                                        "Plants infected at early stage usually do not produce any cobs.\n" +
                                        "Yield losses in East Africa vary between 33 and 55% under natural infection conditions\n" +
-                                       "Control\n" +
-                                       "\n" +
-                                       "Use of tolerant / resistant varieties\n" +
-                                       "Early rouging\n" +
-                                       "Eradication of grass weeds\n" +
-                                       "control vector by spraying with dimethoate, malathion\n" +
-                                       "Avoid overlap of two maize crops\n" +
-                                       "Crop rotation");
+                                       "# Control\n" +
+                                       "1. Use of tolerant / resistant varieties\n" +
+                                       "2. Early rouging\n" +
+                                       "3. Eradication of grass weeds\n" +
+                                       "4. control vector by spraying with dimethoate, malathion\n" +
+                                       "5. Avoid overlap of two maize crops\n" +
+                                       "6. Crop rotation\n" +
+                                       "7. Use certified maize seed");
+
                            }
 
 
