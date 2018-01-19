@@ -152,23 +152,16 @@ public class MainActivity extends AppCompatActivity {
                         try
                         {
 
-
                             JSONArray jsonArray1 = new JSONArray(response);
                             JSONObject jsonObject = jsonArray1.getJSONObject(0);
                             String disease = jsonObject.getString("disease");
                             jsonObject = jsonArray1.getJSONObject(1);
                             String percantage = jsonObject.getString("percantage");
                            // Toast.makeText(MainActivity.this, percantage, Toast.LENGTH_SHORT).show();
-
-
                             String tmpHtml = "<html> <b>a<b/> whole bunch of html stuff</html>";
                             String htmlTextStr = Html.fromHtml(tmpHtml).toString();
-
-
                             MarkdownView mMarkdownView;
-
-
-                            if(disease=="blightvirus")
+                            if(disease.equals("blightvirus"))
                            {
                                mMarkdownView = (MarkdownView)findViewById(R.id.markdown_view);
                                mMarkdownView.loadMarkdown(" # Early Blight\n" +
